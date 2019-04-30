@@ -18,5 +18,5 @@ Route.group(() => {
     Route.delete('tasks/:id', 'TaskController.destroy').middleware('auth');
     Route.patch('tasks/:id', 'TaskController.update').middleware('auth');
 })
-    .prefix('api/v0');
+    .prefix('api');
 
