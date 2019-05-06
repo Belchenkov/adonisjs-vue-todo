@@ -25,7 +25,7 @@
                     <v-alert
                         type="error"
                         :value="registerError"
-                    ></v-alert>
+                    >{{ registerError }}</v-alert>
 
                     <v-btn
                             class="mt-3"
@@ -48,7 +48,8 @@
         computed: {
             ...mapState('authentication', [
                 'registerEmail',
-                'registerPassword'
+                'registerPassword',
+                'registerError'
             ])
         },
         methods: {
