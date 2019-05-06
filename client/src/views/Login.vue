@@ -2,39 +2,39 @@
     <v-container>
         <v-layout row wrap>
             <v-flex xs6 offset-xs3>
-                <h1 class="akronim">Register</h1>
+                <h1 class="akronim">Login</h1>
                 <div class="register-form">
                     <v-text-field
                             label="Email"
                             type="email"
                             color="green"
-                            :value="registerEmail"
+                            :value="loginEmail"
                             prepend-icon="email"
-                            @input="setRegisterEmail"
+                            @input="setLoginEmail"
                     ></v-text-field>
                     <v-text-field
                             type="password"
                             label="Password"
                             color="green"
-                            :value="registerPassword"
+                            :value="loginPassword"
                             autocomplete="new-password"
                             prepend-icon="email"
-                            @input="setRegisterPassword"
+                            @input="setLoginPassword"
                     ></v-text-field>
 
                     <v-alert
                         type="error"
-                        :value="registerError"
-                    >{{ registerError }}</v-alert>
+                        :value="loginError"
+                    >{{ loginError }}</v-alert>
 
                     <v-btn
                             class="mt-3"
                             color="green"
                             dark
-                            @click="register"
+                            @click="login"
                     >
-                        <v-icon left>account_circle</v-icon>
-                        Register
+                        <v-icon left>fingerprint</v-icon>
+                        Login
                     </v-btn>
                 </div>
             </v-flex>
@@ -47,18 +47,18 @@
     export default {
         computed: {
             ...mapState('authentication', [
-                'registerEmail',
-                'registerPassword',
-                'registerError'
+                'loginEmail',
+                'loginPassword',
+                'loginError'
             ])
         },
         methods: {
             ...mapMutations('authentication', [
-                'setRegisterEmail',
-                'setRegisterPassword'
+                'setLoginEmail',
+                'setLoginPassword'
             ]),
             ...mapActions('authentication', [
-                'register'
+                'login'
             ])
         }
     }

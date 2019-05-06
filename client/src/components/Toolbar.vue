@@ -21,7 +21,7 @@
                 <v-icon left>account_box</v-icon>
                 Register
             </v-btn>
-            <v-btn flat v-if="!isLoggedIn">
+            <v-btn flat v-if="!isLoggedIn" to="/login">
                 <v-icon left>fingerprint</v-icon>
                 Login
             </v-btn>
