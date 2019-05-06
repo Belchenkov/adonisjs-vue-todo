@@ -3,6 +3,7 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import Vue from 'vue';
 import App from './App.vue';
+import Panel from './components/Panel';
 import router from './router';
 import store from './store/index';
 
@@ -10,6 +11,8 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
 sync(store, router);
+
+Vue.component('Panel', Panel);
 
 new Vue({
   router,
