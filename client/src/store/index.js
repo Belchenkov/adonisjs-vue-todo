@@ -22,6 +22,6 @@ export default new Vuex.Store({
     projects
   },
   plugins: [
-      createPersistedState()
+      //createPersistedState()
   ]
 })

@@ -2,7 +2,8 @@
     <Panel title="Projects">
         <div
             v-for="project in projects"
-        >{{project}}</div>
+            :key="project.id"
+        >{{project.title}}</div>
         <v-layout row wrap >
             <v-flex xs8>
                 <v-text-field
@@ -42,8 +43,12 @@
                 'setNewProjectName'
             ]),
             ...mapActions('projects', [
-                'createProject'
+                'createProject',
+                'fetchProjects'
             ])
+        },
+        mounted() {
+            this.fetchProjects();
         }
     }
 </script>
