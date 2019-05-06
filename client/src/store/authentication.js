@@ -21,6 +21,10 @@ export default {
         },
         setToken(state, token) {
             state.token = token;
+        },
+        clearRegisterFields(state) {
+            state.registerEmail = null;
+            state.registerPassword = null;
         }
     },
     actions: {
@@ -31,11 +35,21 @@ export default {
                 password: state.registerPassword
             }).then(({ data }) => {
                 commit('setToken', data.token);
+                commit('clearRegisterFields');
                 router.push('/');
             })
             .catch((e) => {
                 commit('setRegisterError', 'An error has occured trying to create your account.')
             });
+        },
+        logout({commit}) {
+            commit('setToken', null);
+            router.push('/login');
+        }
+    },
+    getters: {
+        isLoggedIn(state) {
+            return !!state.token;
         }
     }
 }
