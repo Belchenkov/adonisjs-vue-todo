@@ -10,7 +10,7 @@
                     @keyup.enter="$emit('create')"
             ></v-text-field>
         </v-flex>
-        <v-flex xs4>
+        <v-flex xs4 class="text-xs-right">
             <v-btn
                     class="mt-2"
                     dark

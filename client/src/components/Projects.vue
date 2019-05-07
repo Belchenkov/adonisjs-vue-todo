@@ -5,41 +5,18 @@
             v-for="project in projects"
             :key="project.id"
         >
-            <v-layout row wrap>
-                <v-flex xs9 class="text-xs-left">
-                    <span v-if="!project.isEditMode">{{project.title}}</span>
-                    <v-text-field
-                            autofocus
-                            v-if="project.isEditMode"
-                            :value="project.title"
-                            color="success"
-                            @keyup.enter="saveProject(project)"
-                            @input="setProjectTitle({
-                                project,
-                                title: $event
-                            })"
-                    ></v-text-field>
-                </v-flex>
-                <v-flex xs3>
-                    <v-icon
-                        class="cursor"
-                        @click="setEditMode(project)"
-                        v-if="!project.isEditMode"
-                    >edit</v-icon>
-                    <v-icon
-                        class="cursor ml-3"
-                        color="success"
-                        @click="saveProject(project)"
-                        v-if="project.isEditMode"
-                    >check</v-icon>
-                    <v-icon
-                        color="red"
-                        class="cursor ml-3"
-                        @click="deleteProject(project)"
-                        v-if="project.isEditMode"
-                    >delete</v-icon>
-                </v-flex>
-            </v-layout>
+            <EditableRecord
+                :isEditMode="project.isEditMode"
+                :title="project.title"
+                :record="project"
+                @onInput="setProjectTitle({
+                    project,
+                    title: $event
+                })"
+                @onEdit="setEditMode(project)"
+                @onSave="saveProject(project)"
+                @onDelete="deleteProject(project)"
+            />
         </div>
         <CreateRecord
             placeholder="Project Name is ..."
@@ -52,11 +29,13 @@
 
 <script>
     import CreateRecord from './CreateRecord';
+    import EditableRecord from './EditableRecord';
     import { mapMutations, mapState, mapActions } from 'vuex';
 
     export default {
         components: {
-            CreateRecord
+            CreateRecord,
+            EditableRecord
         },
         computed: {
             ...mapState('projects', [
