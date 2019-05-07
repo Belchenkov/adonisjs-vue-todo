@@ -1,5 +1,5 @@
 import HTTP from "../http";
-import router from "../router";
+import Vue from "vue";
 
 export default {
     namespaced: true,
@@ -28,6 +28,15 @@ export default {
                 console.log(e);
             });
         },
+        saveProject({commit}, project) {
+            return HTTP().patch(`/projects/${project.id}`, project)
+                .then(() => {
+                    commit('unsetEditMode', project);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        },
     },
     getters: {
 
@@ -41,6 +50,15 @@ export default {
         },
         setNewProjectName(state, name) {
             state.newProjectName = name;
+        },
+        setProjectTitle(state, { project, title }) {
+            project.title = title;
+        },
+        setEditMode(state, project) {
+            Vue.set(project, 'isEditMode', true);
+        },
+        unsetEditMode(state, project) {
+            Vue.set(project, 'isEditMode', false);
         }
     }
 }

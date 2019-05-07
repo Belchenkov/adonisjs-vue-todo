@@ -43,4 +43,8 @@
   font-size: 3.5rem;
   color: #6d6d6d;
 }
+
+.cursor {
+  cursor: pointer;
+}
 </style>
