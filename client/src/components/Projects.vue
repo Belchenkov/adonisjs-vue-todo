@@ -12,6 +12,7 @@
                             autofocus
                             v-if="project.isEditMode"
                             :value="project.title"
+                            color="success"
                             @keyup.enter="saveProject(project)"
                             @input="setProjectTitle({
                                 project,
@@ -27,9 +28,16 @@
                     >edit</v-icon>
                     <v-icon
                         class="cursor ml-3"
+                        color="success"
                         @click="saveProject(project)"
                         v-if="project.isEditMode"
                     >check</v-icon>
+                    <v-icon
+                        color="red"
+                        class="cursor ml-3"
+                        @click="deleteProject(project)"
+                        v-if="project.isEditMode"
+                    >delete</v-icon>
                 </v-flex>
             </v-layout>
         </div>
@@ -37,10 +45,11 @@
             <v-flex xs8>
                 <v-text-field
                     placeholder="My project name..."
-                    color="green"
+                    color="success"
                     prepend-icon="business_center"
                     :value="newProjectName"
                     @input="setNewProjectName"
+                    @keyup.enter="createProject"
                 ></v-text-field>
             </v-flex>
             <v-flex xs4>
@@ -76,6 +85,7 @@
             ]),
             ...mapActions('projects', [
                 'createProject',
+                'deleteProject',
                 'saveProject',
                 'fetchProjects'
             ])
@@ -89,6 +99,7 @@
 <style scoped>
     .project {
         font-size: 24px;
+        font-family: 'Pattaya', sans-serif;
     }
 
     .icon:hover {

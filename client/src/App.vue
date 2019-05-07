@@ -19,6 +19,7 @@
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Akronim');
+@import url('https://fonts.googleapis.com/css?family=Pattaya&subset=cyrillic');
 
 #app {
   padding-top: 50px;

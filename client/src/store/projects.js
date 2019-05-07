@@ -37,6 +37,15 @@ export default {
                     console.log(e);
                 });
         },
+        deleteProject({commit}, project) {
+            return HTTP().delete(`/projects/${project.id}`)
+                .then(() => {
+                    commit('removeProject', project);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        },
     },
     getters: {
 
@@ -59,6 +68,9 @@ export default {
         },
         unsetEditMode(state, project) {
             Vue.set(project, 'isEditMode', false);
+        },
+        removeProject(state, project) {
+            state.projects.splice(state.projects.indexOf(project), 1);
         }
     }
 }
