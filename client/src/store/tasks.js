@@ -30,7 +30,22 @@ export default {
                 console.log(e);
             });
         },
-
+        saveTask({commit}, task) {
+            return HTTP().patch(`tasks/${task.id}`, task)
+                .then(() => {
+                    commit('unsetEditMode', task);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        },
+        deleteTask({ commit }, task) {
+            console.log(task);
+            return HTTP().delete(`tasks/${task.id}`)
+                .then(() => {
+                    commit('removeTask', task);
+                });
+        },
     },
     getters: {
 
@@ -45,5 +60,17 @@ export default {
         setNewTaskName(state, newTaskName) {
             state.newTaskName = newTaskName;
         },
+        setTaskDescription(state, { task, description }) {
+            task.description = description;
+        },
+        setEditMode(state, task) {
+            Vue.set(task, 'isEditMode', true);
+        },
+        unsetEditMode(state, task) {
+            Vue.set(task, 'isEditMode', false);
+        },
+        removeTask(state, task) {
+            state.tasks.splice(state.tasks.indexOf(task), 1);
+        }
     }
 }
