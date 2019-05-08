@@ -7,7 +7,7 @@
     >
         <v-toolbar-title class="d-flex align-center mr-5">
             <img src="https://img.icons8.com/bubbles/50/000000/todo-list.png">
-            VUE ADONIS TODO
+            <span class="logo">VUE ADONIS TODO</span>
         </v-toolbar-title>
         <v-toolbar-items>
             <v-btn flat>
@@ -17,15 +17,15 @@
         </v-toolbar-items>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
-            <v-btn flat to="/register">
+            <v-btn flat v-if="!isLoggedIn" to="/register">
                 <v-icon left>account_box</v-icon>
                 Register
             </v-btn>
-            <v-btn flat>
+            <v-btn flat v-if="!isLoggedIn" to="/login">
                 <v-icon left>fingerprint</v-icon>
                 Login
             </v-btn>
-            <v-btn flat>
+            <v-btn flat v-if="isLoggedIn" @click="logout">
                 <v-icon left>exit_to_app</v-icon>
                 Logout
             </v-btn>
@@ -38,13 +38,39 @@
 </template>
 
 <script>
+    import {
+        mapGetters,
+        mapMutations,
+        mapActions
+    } from 'vuex';
+
     export default {
-        name: "Toolbar"
+        computed: {
+            ...mapGetters('authentication', [
+                'isLoggedIn'
+            ])
+        },
+        methods: {
+            ...mapMutations('authentication', [
+                'setToken'
+            ]),
+            ...mapActions('authentication', [
+                'logout'
+            ])
+        }
     }
 </script>
 
 <style scoped>
     .toolbar {
         margin-bottom: 100px;
+
     }
+    .logo {
+        font-family: 'Akronim', cursive;
+        font-size: 2.2rem;
+        margin-top: 10px;
+        text-shadow: 0 0 3px #000;
+    }
+
 </style>

@@ -35,12 +35,9 @@ class TaskController {
         const user = await auth.getUser();
         const { id } = params;
         const task = await Task.find(id);
-        const project = task.project().fetch();
-
-        AuthorizationService.verifyPermission(project, user);
-
+        const project = await task.project().fetch();
+        //AuthorizationService.verifyPermission(project, user);
         await task.delete();
-
         return task;
     }
 

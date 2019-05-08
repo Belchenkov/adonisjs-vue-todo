@@ -18,6 +18,9 @@
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Akronim');
+@import url('https://fonts.googleapis.com/css?family=Pattaya&subset=cyrillic');
+
 #app {
   padding-top: 50px;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -34,5 +37,15 @@
       color: #42b983;
     }
   }
+}
+
+.akronim {
+  font-family: 'Akronim', cursive;
+  font-size: 3.5rem;
+  color: #6d6d6d;
+}
+
+.cursor {
+  cursor: pointer;
 }
 </style>
