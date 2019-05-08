@@ -1,5 +1,5 @@
 <template>
-    <v-layout row wrap >
+    <v-layout row wrap mt-5>
         <v-flex xs8>
             <v-text-field
                     :placeholder="placeholder"

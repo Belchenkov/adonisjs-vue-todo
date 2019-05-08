@@ -1,7 +1,7 @@
 <template>
     <Panel title="Tasks">
         <div
-                class="mt-2 tasks"
+                class="my-2 tasks"
                 v-for="task in tasks"
                 :key="task.id"
         >
