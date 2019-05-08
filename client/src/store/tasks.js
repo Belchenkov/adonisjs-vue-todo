@@ -11,7 +11,6 @@ export default {
         fetchTasksForProject({commit}, project) {
             return HTTP().get(`projects/${project.id}/tasks`)
                 .then(({ data }) => {
-                    console.log(data);
                 commit('setTasks', data);
             })
             .catch((e) => {
@@ -45,12 +44,15 @@ export default {
                 .then(() => {
                     commit('removeTask', task);
                 });
-        },
+        }
     },
     getters: {
 
     },
     mutations: {
+        toggleCompleted(state, task) {
+            task.completed = !task.completed;
+        },
         setTasks(state, tasks) {
             state.tasks = tasks;
         },
