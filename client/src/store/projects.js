@@ -6,6 +6,7 @@ export default {
     state: {
         projects: [],
         newProjectName: null,
+        currentProject: null
     },
     actions: {
         fetchProjects({commit}) {
@@ -51,6 +52,9 @@ export default {
 
     },
     mutations: {
+        setCurrentProject(state, project) {
+            state.currentProject = project;
+        },
         setProjects(state, projects) {
             state.projects = projects;
         },

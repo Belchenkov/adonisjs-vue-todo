@@ -4,7 +4,7 @@
             <v-text-field
                     :placeholder="placeholder"
                     color="success"
-                    prepend-icon="business_center"
+                    :prepend-icon="icon"
                     :value="value"
                     @input="$emit('onInput', $event)"
                     @keyup.enter="$emit('create')"
@@ -27,7 +27,8 @@
     export default {
         props: [
             'placeholder',
-            'value'
+            'value',
+            'icon'
         ]
     }
 </script>

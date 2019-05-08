@@ -6,6 +6,7 @@
             :key="project.id"
         >
             <EditableRecord
+                @onClick="projectClicked(project)"
                 :isEditMode="project.isEditMode"
                 :title="project.title"
                 :record="project"
@@ -20,6 +21,7 @@
         </div>
         <CreateRecord
             placeholder="Project Name is ..."
+            icon="business_center"
             @onInput="setNewProjectName"
             :value="newProjectName"
             @create="createProject"
@@ -46,6 +48,7 @@
         methods: {
             ...mapMutations('projects', [
                 'setEditMode',
+                'setCurrentProject',
                 'unsetEditMode',
                 'setProjectTitle',
                 'setNewProjectName'
@@ -55,7 +58,14 @@
                 'deleteProject',
                 'saveProject',
                 'fetchProjects'
-            ])
+            ]),
+            ...mapActions('tasks', [
+                'fetchTasksForProject'
+            ]),
+            projectClicked(project) {
+                this.setCurrentProject(project);
+                this.fetchTasksForProject(project);
+            },
         },
         mounted() {
             this.fetchProjects();
